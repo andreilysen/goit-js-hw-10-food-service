@@ -18,7 +18,7 @@ const Theme = {
   LIGHT: 'light-theme',
   DARK: 'dark-theme',
 };
-
+body.classList.add(Theme.LIGHT)
 const reload = () => {
     const check = localStorage.getItem('theme');
     if (check === Theme.DARK) {
@@ -27,28 +27,18 @@ const reload = () => {
     }
 };
 
-body.classList.add(reload());
-
-const saveTheme = () => {
-    if (themeToggle.checked) {
-        console.log(themeToggle.checked)
-        localStorage.setItem('theme', Theme.DARK)
-    }
-    else {
-        localStorage.removeItem('theme')
-    }
-}
+reload();
 
 const changeTheme = (click) => {
     if (themeToggle.checked) {
-        // body.classList.remove(Theme.LIGHT);
+        body.classList.remove(Theme.LIGHT);
         body.classList.add(Theme.DARK);
-        saveTheme()
+        localStorage.setItem('theme', Theme.DARK)
     }
     else {
-        // body.classList.add(Theme.LIGHT);
+        body.classList.add(Theme.LIGHT);
         body.classList.remove(Theme.DARK);
-        saveTheme()
+        localStorage.setItem('theme', Theme.LIGHT)
     }        
 }
 themeToggle.addEventListener('click', changeTheme);
